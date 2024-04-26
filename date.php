@@ -429,12 +429,19 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-            <div class="form-group; text-right">
+            <div class="form-group text-right">
             <?php
-            $id_tw = $_GET['id_triwulan'];
+            // Periksa apakah parameter id_triwulan ada dalam URL
+            if(isset($_GET['id_triwulan'])) {
+                $id_tw = $_GET['id_triwulan'];
+            } else {
+                // Tindakan jika parameter id_triwulan tidak ditemukan dalam URL
+                $id_tw = ""; // Atau tindakan lain sesuai kebutuhan
+            }
             ?>
-                <a href="tambah_tw.php?id_triwulan=<?php echo $id_tw;?>" class="btn btn-sm btn-primary" name="tambah" type="submit"><i class="fa fa-plus"></i> Tambah</a>
-            </div>
+            <a href="tambah_tw.php?id_triwulan=<?php echo $id_tw;?>" class="btn btn-sm btn-primary" name="tambah" type="submit"><i class="fa fa-plus"></i> Tambah</a>
+        </div>
+
             </br>
                     <!-- Content Row -->
                     
@@ -450,9 +457,23 @@
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Date :</div>
                                     </div>
                                     <div class="col-auto">
-                                        <button class="btn btn-primary" onclick="window.location.href='tw.php?id_triwulan=<?php echo $id_tw; ?>'">
-                                            <i class=" text-gray-300"></i> View Tasks
-                                        </button>
+                                    <?php
+                                      include 'koneksi.php'; 
+                                      $id_tw = $_GET['id_triwulan'];
+                                      $query = mysqli_query($koneksi, "SELECT tanggal FROM capaian WHERE id_capaian='$id_tw'");
+                                      if ($query) {
+                                          $data = mysqli_fetch_assoc($query);
+                                          if ($data) {
+                                              $tanggal = $data['tanggal'];
+
+                                              // Membuat tombol untuk menuju ke halaman tw.php dengan parameter id_triwulan
+                                              echo '<button class="btn btn-primary" onclick="window.location.href=\'tw.php?id_triwulan=' . $id_tw . '\'">';
+                                              echo '<i class=" text-gray-300"></i> ' . $tanggal;
+                                              echo '</button>';
+                                          } 
+                                      } 
+                                      ?>
+
                                     </div>
                                 </div>
                             </div>
