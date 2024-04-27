@@ -113,17 +113,17 @@
             class="nav-link collapsed"
             href="#"
             data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
+            data-target="#collapsePages<?php echo $d['id_prodi']; ?>"
+            aria-expanded="false"
+            aria-controls="collapsePages<?php echo $d['id_prodi']; ?>"
           >
             <i class="fas fa-fw fa-chart-area"></i>
             <span><?php echo $d['nama_prodi']; ?></span>
           </a>
           <div
-            id="collapsePages"
+            id="collapsePages<?php echo $d['id_prodi']; ?>"
             class="collapse"
-            aria-labelledby="headingPages"
+            aria-labelledby="headingPages<?php echo $d['id_prodi']; ?>"
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
@@ -133,10 +133,13 @@
               <?php 
                 $data_tri = mysqli_query($koneksi, "SELECT * FROM triwulan");
 
-                while($d = mysqli_fetch_array($data_tri)){
+
+                while($d_tw = mysqli_fetch_array($data_tri)){
+
 
               ?>
-              <a class="collapse-item" href="tw.php?id_triwulan=<?php echo $d['id_triwulan']?>"><?php echo $d['nama_triwulan'] ?></a>
+              <a class="collapse-item" href="tw.php?id_triwulan=<?php echo $d_tw['id_triwulan']?>&id_prodi=<?php echo $d['id_prodi']; ?>"><?php echo $d_tw['nama_triwulan'] ?></a>
+
               <?php } ?>
             </div>
         </li>

@@ -4,15 +4,12 @@ include 'koneksi.php';
 
 // menangkap data id yang dikirim dari URL
 $id_capaian = $_GET['id_capaian'];
-
-// mengambil id_triwulan dari capaian yang akan dihapus
-$query = mysqli_query($koneksi, "SELECT id_triwulan FROM capaian WHERE id_capaian='$id_capaian'");
-$data = mysqli_fetch_assoc($query);
-$id_tw = $data['id_triwulan'];
-
+$id_tw = $_GET['id_triwulan'];
+$id_prodi = $_GET['id_prodi'];
+echo var_dump($id_capaian);
 // menghapus data dari database
 mysqli_query($koneksi,"DELETE FROM capaian WHERE id_capaian='$id_capaian'");
 
 // mengalihkan halaman kembali ke halaman tw.php
-header("Location: tw.php?id_triwulan=" . $id_tw);
+header("Location: tw.php?id_triwulan=" . $id_tw . "&id_prodi=" . $id_prodi);
 ?>

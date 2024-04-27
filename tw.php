@@ -447,6 +447,7 @@
         <div class="form-group; text-right">
         <?php
         $id_tw = $_GET['id_triwulan'];
+        $id_prodi = $_GET['id_prodi'];
         ?>
             <a href="tambah_tw.php?id_triwulan=<?php echo $id_tw;?>" class="btn btn-sm btn-primary" name="tambah" type="submit"><i class="fa fa-plus"></i> Tambah</a>
         </div>
@@ -505,7 +506,7 @@
                                 <td><?php echo $d['capaian_tw']; ?></td>
                                 <td>       
                                     <a href="edit_tw.php?id_triwulan=<?php echo $id_tw;?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a href="hapus_tw.php?id_triwulan=<?php echo $id_tw;?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data triwulan ini?')"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="hapus_tw.php?id_capaian=<?php echo $d['id_capaian'];?>&id_triwulan=<?php echo $id_tw;?>&id_prodi=<?php echo $id_prodi;?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data triwulan ini?')"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             <?php 

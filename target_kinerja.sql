@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Apr 2024 pada 06.03
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.2.34
+-- Generation Time: Apr 27, 2024 at 09:28 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,44 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `id` int(10) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `capaian`
+-- Table structure for table `capaian`
 --
 
 CREATE TABLE `capaian` (
   `id_capaian` int(11) NOT NULL,
   `id_triwulan` int(11) NOT NULL,
   `id_iku` int(11) NOT NULL,
+  `id_prodi` int(10) NOT NULL,
   `tanggal` date NOT NULL,
   `satuan` varchar(255) NOT NULL,
   `target_renaksi_tw` varchar(255) NOT NULL,
   `capaian_tw` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `capaian`
+-- Dumping data for table `capaian`
 --
 
-INSERT INTO `capaian` (`id_capaian`, `id_triwulan`, `id_iku`, `tanggal`, `satuan`, `target_renaksi_tw`, `capaian_tw`) VALUES
-(1, 1, 1, '0000-00-00', '%', '20', '30'),
-(2, 2, 1, '0000-00-00', '%', '25', '35'),
-(10, 1, 1, '0000-00-00', '7', '11', '12');
+INSERT INTO `capaian` (`id_capaian`, `id_triwulan`, `id_iku`, `id_prodi`, `tanggal`, `satuan`, `target_renaksi_tw`, `capaian_tw`) VALUES
+(2, 2, 1, 1, '0000-00-00', '%', '25', '35');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `iku`
+-- Table structure for table `iku`
 --
 
 CREATE TABLE `iku` (
@@ -70,10 +69,10 @@ CREATE TABLE `iku` (
   `no_iku` varchar(225) NOT NULL,
   `indikator` varchar(255) NOT NULL,
   `target_kinerja` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `iku`
+-- Dumping data for table `iku`
 --
 
 INSERT INTO `iku` (`id_iku`, `sasaran`, `no_iku`, `indikator`, `target_kinerja`) VALUES
@@ -89,16 +88,16 @@ INSERT INTO `iku` (`id_iku`, `sasaran`, `no_iku`, `indikator`, `target_kinerja`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Table structure for table `jurusan`
 --
 
 CREATE TABLE `jurusan` (
   `id_jurusan` int(10) NOT NULL,
   `nama_jurusan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data for table `jurusan`
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
@@ -109,7 +108,7 @@ INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keterangan`
+-- Table structure for table `keterangan`
 --
 
 CREATE TABLE `keterangan` (
@@ -118,42 +117,42 @@ CREATE TABLE `keterangan` (
   `progres` varchar(255) NOT NULL,
   `kendala` varchar(255) NOT NULL,
   `strategi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `prodi`
+-- Table structure for table `prodi`
 --
 
 CREATE TABLE `prodi` (
   `id_prodi` int(10) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
   `nama_prodi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `prodi`
+-- Dumping data for table `prodi`
 --
 
 INSERT INTO `prodi` (`id_prodi`, `id_jurusan`, `nama_prodi`) VALUES
-(8, 1, 'Manajemen informatika\r\n'),
-(9, 1, 'Teknik Multimedia'),
-(22, 1, 'Akuntansi Keuangan Perusahaan');
+(1, 1, 'Manajemen informatika\r\n'),
+(2, 1, 'Teknik Multimedia'),
+(3, 1, 'Akuntansi Keuangan Perusahaan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `triwulan`
+-- Table structure for table `triwulan`
 --
 
 CREATE TABLE `triwulan` (
   `id_triwulan` int(10) NOT NULL,
   `nama_triwulan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `triwulan`
+-- Dumping data for table `triwulan`
 --
 
 INSERT INTO `triwulan` (`id_triwulan`, `nama_triwulan`) VALUES
@@ -164,7 +163,7 @@ INSERT INTO `triwulan` (`id_triwulan`, `nama_triwulan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -172,135 +171,137 @@ CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `prodi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `capaian`
+-- Indexes for table `capaian`
 --
 ALTER TABLE `capaian`
   ADD PRIMARY KEY (`id_capaian`),
   ADD KEY `id_triwulan` (`id_triwulan`),
-  ADD KEY `id_iku` (`id_iku`);
+  ADD KEY `id_iku` (`id_iku`),
+  ADD KEY `id_prodi` (`id_prodi`);
 
 --
--- Indeks untuk tabel `iku`
+-- Indexes for table `iku`
 --
 ALTER TABLE `iku`
   ADD PRIMARY KEY (`id_iku`);
 
 --
--- Indeks untuk tabel `jurusan`
+-- Indexes for table `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id_jurusan`);
 
 --
--- Indeks untuk tabel `keterangan`
+-- Indexes for table `keterangan`
 --
 ALTER TABLE `keterangan`
   ADD PRIMARY KEY (`id_ket`),
   ADD KEY `id_iku` (`id_iku`);
 
 --
--- Indeks untuk tabel `prodi`
+-- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id_prodi`),
   ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
--- Indeks untuk tabel `triwulan`
+-- Indexes for table `triwulan`
 --
 ALTER TABLE `triwulan`
   ADD PRIMARY KEY (`id_triwulan`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `capaian`
+-- AUTO_INCREMENT for table `capaian`
 --
 ALTER TABLE `capaian`
   MODIFY `id_capaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `iku`
+-- AUTO_INCREMENT for table `iku`
 --
 ALTER TABLE `iku`
   MODIFY `id_iku` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `jurusan`
+-- AUTO_INCREMENT for table `jurusan`
 --
 ALTER TABLE `jurusan`
   MODIFY `id_jurusan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `keterangan`
+-- AUTO_INCREMENT for table `keterangan`
 --
 ALTER TABLE `keterangan`
   MODIFY `id_ket` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `prodi`
+-- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
   MODIFY `id_prodi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `triwulan`
+-- AUTO_INCREMENT for table `triwulan`
 --
 ALTER TABLE `triwulan`
   MODIFY `id_triwulan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `capaian`
+-- Constraints for table `capaian`
 --
 ALTER TABLE `capaian`
   ADD CONSTRAINT `capaian_ibfk_1` FOREIGN KEY (`id_iku`) REFERENCES `iku` (`id_iku`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `capaian_ibfk_3` FOREIGN KEY (`id_triwulan`) REFERENCES `triwulan` (`id_triwulan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `capaian_ibfk_3` FOREIGN KEY (`id_triwulan`) REFERENCES `triwulan` (`id_triwulan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `capaian_ibfk_4` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `keterangan`
+-- Constraints for table `keterangan`
 --
 ALTER TABLE `keterangan`
   ADD CONSTRAINT `keterangan_ibfk_1` FOREIGN KEY (`id_iku`) REFERENCES `iku` (`id_iku`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `prodi`
+-- Constraints for table `prodi`
 --
 ALTER TABLE `prodi`
   ADD CONSTRAINT `qwer` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
