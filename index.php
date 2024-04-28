@@ -138,7 +138,7 @@
 
 
               ?>
-              <a class="collapse-item" href="tw.php?id_triwulan=<?php echo $d_tw['id_triwulan']?>&id_prodi=<?php echo $d['id_prodi']; ?>"><?php echo $d_tw['nama_triwulan'] ?></a>
+              <a class="collapse-item" href="date.php?id_triwulan=<?php echo $d_tw['id_triwulan']?>&id_prodi=<?php echo $d['id_prodi']; ?>"><?php echo $d_tw['nama_triwulan'] ?></a>
 
               <?php } ?>
             </div>
